@@ -1,3 +1,3 @@
 # BluetoothExample
-Bluetooth Example (Android Studio)
+Bluetooth Example (Android Studio) <br/>
 used Android 12
