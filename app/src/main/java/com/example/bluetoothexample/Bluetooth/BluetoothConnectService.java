@@ -37,8 +37,8 @@ public class BluetoothConnectService extends Service {
         super.onCreate();
 
         Log.i("BackgroundService", "블루투스 장치 연결 서비스 시작");
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+//        Intent notificationIntent = new Intent(this, MainActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
 
         notificationManager = NotificationManagerCompat.from(this);
 
@@ -55,8 +55,8 @@ public class BluetoothConnectService extends Service {
                 .setSmallIcon(R.drawable.ic_baseline_bluetooth_connected_24)
                 .setContentTitle("알림")
                 .setContentText("블루투스 서비스")
-                .setContentIntent(pendingIntent)
                 .build();
+//              .setContentIntent(pendingIntent)
 
         startForeground(1, notification);
     }
