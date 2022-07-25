@@ -62,6 +62,21 @@ public class ConnectThread  extends Thread {
             // Unable to connect; close the socket and return.
             try {
                 mmSocket.close();
+                ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (division) {
+                            case 0: // 등록된 장치
+                                ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).pairedBluetoothDevice.get(position).put("connectState", "연결 안됨"); // hashmap 값 변경
+                                ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).pairedBTArrayAdapter.notifyDataSetChanged();
+                                break;
+                            case 1: // 검색된 장치
+                                ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).searchedBluetoothDevice.get(position).put("connectState", "연결 안됨"); // hashmap 값 변경
+                                ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).searchedBTArrayAdapter.notifyDataSetChanged();
+                                break;
+                        }
+                    }
+                });
                 ((MainActivity) MainActivity.context_main).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
