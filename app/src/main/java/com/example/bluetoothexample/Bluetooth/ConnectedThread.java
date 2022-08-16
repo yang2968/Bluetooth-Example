@@ -32,7 +32,6 @@ public class ConnectedThread extends Thread {
             tmpIn = socket.getInputStream();
             tmpOut = socket.getOutputStream();
         } catch (IOException e) { }
-
         mmInStream = tmpIn;
         mmOutStream = tmpOut;
     }
@@ -53,26 +52,21 @@ public class ConnectedThread extends Thread {
                     // 입력 스트림 바이트를 한 바이트씩 읽음
                     for(int i = 0; i < byteAvailable; i++) {
                         byte tempByte = bytes[i];
-
                         // 개행문자를 기준으로 나눔(한줄)
                         if(tempByte == '\n') {
                             // readBuffer 배열을 encodedBytes로 복사
                             byte[] encodedBytes = new byte[readBufferPosition];
                             System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-
                             // 인코딩된 바이트 배열을 문자열로 변환
                             final String text = new String(encodedBytes, "US-ASCII");
                             readBufferPosition = 0;
                             Log.i("수신받은 데이터 값 : ", text);
-
                             ((MainActivity) MainActivity.context_main).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     Toast.makeText((MainActivity.context_main), "수신 값: " + text, Toast.LENGTH_SHORT).show();
                                 }
                             });
-
-
                         } // 개행 문자가 아닐 경우
                         else {
                             readBuffer[readBufferPosition++] = tempByte;

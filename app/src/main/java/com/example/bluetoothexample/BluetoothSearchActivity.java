@@ -142,15 +142,13 @@ public class BluetoothSearchActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     public void search() {
-        // 이미 검색 중인 경우
-        if (bluetoothAdapter.isDiscovering()) {
+        if (bluetoothAdapter.isDiscovering()) { // 이미 검색 중인 경우
             bluetoothAdapter.cancelDiscovery(); // 검색 중지
         }
         bluetoothAdapter.startDiscovery();
-        //Toast.makeText(this, "Search Bluetooth Device", Toast.LENGTH_SHORT).show();
     }
 
-    private final BroadcastReceiver receiver_search = new BroadcastReceiver() { // Create a BroadcastReceiver for ACTION_FOUND.
+    private BroadcastReceiver receiver_search = new BroadcastReceiver() { // Create a BroadcastReceiver for ACTION_FOUND.
         public void onReceive(Context context, Intent intent) { // 블루투스 장치 검색 리시버
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {

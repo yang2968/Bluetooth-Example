@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.BLUETOOTH_SCAN, // Android 12부터 필요한 블루투스 권한들 없으면 블루투스 관련 기능 시 에러 발생
                 Manifest.permission.BLUETOOTH_ADVERTISE,
                 Manifest.permission.BLUETOOTH_CONNECT,
-
         };
         // 각 권한의 허용 여부를 확인
         for (String permission : permission_list) {
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             // 블루투스 권한
             case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[4] == PackageManager.PERMISSION_GRANTED) { // 수정 필요
                     //권한 승인
                     Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(intent, BT_REQUEST_ENABLE); // 선택한 값이 onActivityResult 함수에서 콜백

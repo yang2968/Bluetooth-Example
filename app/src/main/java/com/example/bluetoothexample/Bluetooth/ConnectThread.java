@@ -33,8 +33,8 @@ public class ConnectThread  extends Thread {
         // Use a temporary object that is later assigned to mmSocket
         // because mmSocket is final.
         mmDevice = device;
-        position = pos;
-        division = div;
+        position = pos; // 선택한 장치 포지션 구분
+        division = div; // 등록된 기기 또는 검색된 기기 구분
         BluetoothSocket tmp = null;
 
         try {
@@ -91,8 +91,6 @@ public class ConnectThread  extends Thread {
             return;
         }
         // 블루투스 장치와 연결 성공
-        // The connection attempt succeeded. Perform work associated with
-        // the connection in a separate thread.
         ((BluetoothSearchActivity) BluetoothSearchActivity.context_BS).runOnUiThread(new Runnable() {
             @Override
             public void run() {
